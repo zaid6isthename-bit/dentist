@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Green Park Dental | South Delhi's Premier Dental Clinic Since 1977</title>
+  <meta name="description" content="Established in 1977, Green Park Dental in South Delhi offers world-class, advanced dental care. Led by Dr. S.P. Aggarwal and 15+ specialists. Book your perfect smile today.">
+  <meta name="keywords" content="Green Park Dental, Dental Clinic South Delhi, Best Dentist New Delhi, Dental Implants Delhi, Teeth Whitening Green Park, Dr S P Aggarwal, Smile Keepers Since 1977">
+  <meta name="author" content="Green Park Dental Clinic">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://greenparkdental.com/">
+  <meta property="og:title" content="Green Park Dental | Smile Keepers Since 1977">
+  <meta property="og:description" content="Redefining dental experiences in South Delhi with advanced technology and expert care. Book an appointment today.">
+  
+  <!-- Fonts (Inter + Playfair Display) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dentalGreen: {
+              DEFAULT: '#0B6E4F',
+              light: '#E8F5F0',
+              dark: '#085039',
+            },
+            goldAccent: {
+              DEFAULT: '#F4C430',
+              hover: '#E5B320',
+            },
+            darkBlue: '#1A1A2E',
+            grayText: '#6B7280',
+            borderGray: '#E5E7EB'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            premium: '0 10px 30px -10px rgba(11, 110, 79, 0.08)',
+            hoverPremium: '0 20px 40px -12px rgba(11, 110, 79, 0.15)',
+            goldGlow: '0 0 20px rgba(244, 196, 48, 0.35)',
+            subtle: '0 4px 18px rgba(0, 0, 0, 0.03)'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom Styles -->
+  <style>
+    /* Custom Scrollbar Hide for mobile horizontal sliders */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    
+    /* Scroll Reveal Animation Styles */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Toast Notification styles */
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      pointer-events: none;
+    }
+    .toast {
+      pointer-events: auto;
+      background-color: #FFFFFF;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-width: 380px;
+      border: 1px solid rgba(229, 231, 235, 0.6);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* CSS Keyframes for mobile slide down */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-slideDown {
+      animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Subtle custom map loading skeleton overlay */
+    .map-container.loading::before {
+      content: "Loading Map...";
+      position: absolute;
+      inset: 0;
+      background: #F3F4F6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6B7280;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Hero entrance animations */
+    @keyframes heroFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes heroSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes heroZoomIn {
+      from {
+        opacity: 0;
+        transform: scale(1.05);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .animate-hero-fade {
+      animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .animate-hero-slide {
+      animation: heroSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .animate-hero-zoom {
+      animation: heroZoomIn 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="bg-white text-darkBlue font-sans antialiased overflow-x-hidden">
+
+  <!-- Reusable SVG Defs for Gradients -->
+  <svg style="width:0; height:0; position:absolute;" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="mintGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#E8F5F0" />
+        <stop offset="100%" stop-color="#C5E6D8" />
+      </linearGradient>
+      <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F4C430" />
+        <stop offset="100%" stop-color="#E5B320" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ================= SECTION 1: Sticky Navigation Bar ================= -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white/40 border-t-4 border-transparent backdrop-blur-none transition-all duration-300 shadow-none">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8 py-3 md:py-4 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex flex-col group select-none">
+        <span class="font-serif text-xl md:text-2xl font-bold text-dentalGreen tracking-tight leading-tight group-hover:text-dentalGreen-dark transition-colors">Green Park Dental</span>
+        <span class="text-[9px] md:text-[10px] uppercase font-bold text-goldAccent tracking-widest -mt-0.5 leading-none">Since 1977</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 font-sans font-medium text-sm text-darkBlue">
+        <a href="#hero" class="hover:text-dentalGreen transition-colors relative py-1.5 group">
+          Home
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-dentalGreen transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#services" class="hover:text-dentalGreen transition-colors relative py-1.5 group">
+          Services
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-dentalGreen transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#about" class="hover:text-dentalGreen transition-colors relative py-1.5 group">
+          About
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-dentalGreen transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#testimonials" class="hover:text-dentalGreen transition-colors relative py-1.5 group">
+          Testimonials
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-dentalGreen transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#contact" class="hover:text-dentalGreen transition-colors relative py-1.5 group">
+          Contact
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-dentalGreen transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </nav>
+
+      <!-- Desktop Book Appointment Button -->
+      <div class="hidden md:block">
+        <a href="#booking" class="bg-goldAccent hover:bg-goldAccent-hover text-darkBlue font-bold px-6 py-2.5 rounded-full text-xs lg:text-sm tracking-wide transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-goldGlow select-none">
+          Book Appointment
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-darkBlue hover:text-dentalGreen transition-colors p-2 focus:outline-none" aria-label="Toggle Menu">
+        <div class="w-6 h-5 relative flex flex-col justify-between">
+          <span id="hamburger-top" class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left"></span>
+          <span id="hamburger-middle" class="w-full h-0.5 bg-current rounded-full transition-all duration-300"></span>
+          <span id="hamburger-bottom" class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left"></span>
+        </div>
+      </button>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 hidden flex flex-col p-6 gap-4 animate-slideDown z-40">
+      <a href="#hero" class="mobile-link text-base font-semibold text-darkBlue py-2.5 border-b border-gray-50 hover:text-dentalGreen transition-colors">Home</a>
+      <a href="#services" class="mobile-link text-base font-semibold text-darkBlue py-2.5 border-b border-gray-50 hover:text-dentalGreen transition-colors">Services</a>
+      <a href="#about" class="mobile-link text-base font-semibold text-darkBlue py-2.5 border-b border-gray-50 hover:text-dentalGreen transition-colors">About Us</a>
+      <a href="#testimonials" class="mobile-link text-base font-semibold text-darkBlue py-2.5 border-b border-gray-50 hover:text-dentalGreen transition-colors">Testimonials</a>
+      <a href="#contact" class="mobile-link text-base font-semibold text-darkBlue py-2.5 border-b border-gray-50 hover:text-dentalGreen transition-colors">Contact</a>
+      <a href="#booking" class="mobile-link bg-goldAccent hover:bg-goldAccent-hover text-darkBlue font-bold text-center py-3.5 rounded-full text-sm transition-all duration-300 mt-2 block shadow-sm">
+        Book Appointment
+      </a>
+    </div>
+  </header>
+
+  <!-- ================= SECTION 2: Hero Section ================= -->
+  <section id="hero" class="min-h-screen pt-24 md:pt-32 pb-16 flex items-center relative overflow-hidden bg-white z-10">
+    <!-- Desktop background image (aligned to right, fading to white on left) -->
+    <div class="absolute inset-y-0 right-0 z-0 hidden lg:block w-3/5 bg-cover bg-no-repeat bg-[center_right] pointer-events-none opacity-0 animate-hero-fade" style="background-image: url('images/hero-bg.png');">
+      <!-- Gradient mask to blend typography seamlessly -->
+      <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 via-white/30 to-transparent"></div>
+    </div>
+    <!-- Mobile background watermark (12% opacity behind everything) -->
+    <div class="absolute inset-0 z-0 lg:hidden bg-cover bg-no-repeat bg-[center_right_30%] pointer-events-none opacity-[0.12]" style="background-image: url('images/hero-bg.png');"></div>
+
+    <!-- Subtle top right mint radial gradient -->
+    <div class="absolute top-0 right-0 w-full md:w-[700px] h-[700px] bg-gradient-to-bl from-dentalGreen-light/40 via-dentalGreen-light/10 to-transparent rounded-full -mr-80 -mt-80 -z-10 blur-3xl pointer-events-none"></div>
+    
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+      
+      <!-- Hero Left (60% width equivalent on desktop) -->
+      <div class="lg:col-span-7 text-left flex flex-col items-start relative z-10">
+        <!-- Label Pill -->
+        <span class="inline-flex items-center bg-dentalGreen text-white px-4 py-1.5 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest mb-6 shadow-sm select-none opacity-0 animate-hero-slide" style="animation-delay: 100ms;">
+          South Delhi's Most Trusted Dental Clinic
+        </span>
+        
+        <!-- Main Headline -->
+        <h1 class="font-serif text-[42px] md:text-[56px] font-bold leading-[1.1] text-darkBlue mb-6 tracking-tight opacity-0 animate-hero-slide" style="animation-delay: 250ms;">
+          Your Perfect Smile<br class="hidden sm:inline"> Starts Here.
+        </h1>
+        
+        <!-- Subheading -->
+        <p class="font-sans text-base md:text-lg text-grayText leading-[1.7] mb-8 max-w-[540px] opacity-0 animate-hero-slide" style="animation-delay: 400ms;">
+          Decades of experience, thousands of happy smiles. Experience world-class, advanced dental care in the heart of New Delhi.
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 w-full sm:w-auto mb-12 opacity-0 animate-hero-slide" style="animation-delay: 550ms;">
+          <a href="#booking" class="flex-1 sm:flex-none text-center bg-goldAccent hover:bg-goldAccent-hover text-darkBlue font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-goldGlow select-none">
+            Book Appointment
+          </a>
+          <a href="#services" class="flex-1 sm:flex-none text-center border-2 border-dentalGreen text-dentalGreen hover:bg-dentalGreen hover:text-white font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 select-none">
+            View Services
+          </a>
+        </div>
+        
+        <!-- Three Stat Pills below CTAs -->
+        <div class="grid grid-cols-3 gap-3 md:gap-4 w-full max-w-[500px] opacity-0 animate-hero-slide" style="animation-delay: 700ms;">
+          <!-- Pill 1 -->
+          <div class="bg-white p-3 md:p-4 rounded-2xl border border-gray-100 shadow-subtle flex flex-col items-center justify-center text-center">
+            <span class="font-serif text-lg md:text-xl font-bold text-dentalGreen leading-none">45+ Years</span>
+            <span class="text-[10px] md:text-xs text-grayText font-medium mt-1 leading-tight">Of Excellence</span>
+          </div>
+          <!-- Pill 2 -->
+          <div class="bg-white p-3 md:p-4 rounded-2xl border border-gray-100 shadow-subtle flex flex-col items-center justify-center text-center">
+            <span class="font-serif text-lg md:text-xl font-bold text-dentalGreen leading-none">10,000+</span>
+            <span class="text-[10px] md:text-xs text-grayText font-medium mt-1 leading-tight">Happy Patients</span>
+          </div>
+          <!-- Pill 3 -->
+          <div class="bg-white p-3 md:p-4 rounded-2xl border border-gray-100 shadow-subtle flex flex-col items-center justify-center text-center">
+            <span class="font-serif text-lg md:text-xl font-bold text-dentalGreen leading-none">15+</span>
+            <span class="text-[10px] md:text-xs text-grayText font-medium mt-1 leading-tight">Specialists</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Hero Right (40% width equivalent on desktop) -->
+      <div class="lg:col-span-5 relative mt-8 lg:mt-0 w-full max-w-[420px] lg:max-w-none mx-auto relative z-10" style="transition-delay: 150ms;">
+        
+        <!-- Mobile/Tablet Only: Large Mint Green Rounded Box with Tooth SVG -->
+        <div class="lg:hidden bg-dentalGreen-light rounded-[2.5rem] p-8 md:p-12 w-full aspect-square flex items-center justify-center relative border border-dentalGreen/5 overflow-visible">
+          
+          <!-- Floating Badge Top Right -->
+          <div class="absolute -top-4 -right-2 bg-goldAccent text-darkBlue px-4 py-1.5 rounded-full font-bold text-xs md:text-sm shadow-md rotate-3 select-none border border-white/40">
+            Est. 1977
+          </div>
+          
+          <!-- Floating Badge Bottom Left -->
+          <div class="absolute -bottom-4 -left-4 bg-white p-3 px-5 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-2 text-darkBlue font-semibold text-xs md:text-sm -rotate-2 select-none">
+            <span class="text-goldAccent">★</span>
+            <span>4.9 Google Rating</span>
+          </div>
+
+          <!-- Hero Tooth Illustration (Clean Custom SVG) -->
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full max-w-[240px] md:max-w-[280px] filter drop-shadow-[0_12px_24px_rgba(11,110,79,0.12)]">
+            <!-- Pulsing backing glow -->
+            <circle cx="100" cy="100" r="85" fill="url(#circleGradient)" opacity="0.45" />
+            <!-- Rotating-style rings -->
+            <circle cx="100" cy="100" r="75" stroke="#0B6E4F" stroke-width="1" stroke-dasharray="8 8" opacity="0.3" />
+            
+            <!-- Tooth Main Shape -->
+            <path d="M70 50C85 46 95 53 100 53C105 53 115 46 130 50C142 54 148 68 148 83C148 110 135 128 126 140C122 145 116 148 115 154C114 160 118 170 118 170C108 170 104 158 100 146C96 158 92 170 82 170C82 170 86 160 85 154C84 148 78 145 74 140C65 128 52 110 52 83C52 68 58 54 70 50Z" 
+                  fill="url(#toothGradient)" stroke="#0B6E4F" stroke-width="2.5" stroke-linejoin="round" />
+            
+            <!-- Highlight Shine Curve -->
+            <path d="M 64 78 A 36 36 0 0 1 76 58" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+            
+            <!-- Shadow details inside -->
+            <path d="M90 68C95 71 105 71 110 68" stroke="#0B6E4F" stroke-width="1.5" stroke-linecap="round" opacity="0.4" />
+            <path d="M100 69V112" stroke="#0B6E4F" stroke-width="1.5" stroke-linecap="round" opacity="0.25" />
+            
+            <!-- Gold Sparkles -->
+            <g transform="translate(152, 42)">
+              <path d="M0 -10C0 -2.5 2.5 0 10 0C2.5 0 0 2.5 0 10C0 2.5 -2.5 0 -10 0C-2.5 0 0 -2.5 0 -10Z" fill="#F4C430" />
+            </g>
+            <g transform="translate(42, 102) scale(0.75)">
+              <path d="M0 -10C0 -2.5 2.5 0 10 0C2.5 0 0 2.5 0 10C0 2.5 -2.5 0 -10 0C-2.5 0 0 -2.5 0 -10Z" fill="#F4C430" />
+            </g>
+            <g transform="translate(142, 128) scale(0.6)">
+              <path d="M0 -10C0 -2.5 2.5 0 10 0C2.5 0 0 2.5 0 10C0 2.5 -2.5 0 -10 0C-2.5 0 0 -2.5 0 -10Z" fill="#F4C430" />
+            </g>
+
+            <defs>
+              <radialGradient id="circleGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#E8F5F0" />
+                <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="toothGradient" x1="52" y1="50" x2="148" y2="170" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="60%" stop-color="#E8F5F0" />
+                <stop offset="100%" stop-color="#C5E6D8" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <!-- Desktop Only: Floating Badges directly over the background image -->
+        <div class="hidden lg:block h-[400px] w-full relative">
+          <!-- Floating Badge Top Right -->
+          <div class="absolute top-12 right-4 bg-goldAccent text-darkBlue px-5 py-2.5 rounded-full font-bold text-sm shadow-md rotate-6 select-none border border-white/40 opacity-0 animate-hero-slide" style="animation-delay: 750ms;">
+            Est. 1977
+          </div>
+          
+          <!-- Floating Badge Bottom Left -->
+          <div class="absolute bottom-16 left-0 bg-white p-4 px-6 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-2 text-darkBlue font-bold text-sm -rotate-3 select-none opacity-0 animate-hero-slide" style="animation-delay: 900ms;">
+            <span class="text-goldAccent text-base">★</span>
+            <span>4.9 Google Rating</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION 3: Services Strip ================= -->
+  <section id="services" class="py-20 bg-dentalGreen-light scroll-mt-12 overflow-hidden">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+      
+      <!-- Headers -->
+      <div class="text-center mb-12 md:mb-16 reveal">
+        <span class="text-dentalGreen font-bold uppercase tracking-widest text-[10px] md:text-xs select-none">
+          Our Services
+        </span>
+        <h2 class="font-serif text-3xl md:text-[36px] font-bold text-darkBlue mt-2 tracking-tight">
+          Everything Your Smile Needs
+        </h2>
+      </div>
+
+      <!-- 8 Service Cards (2x4 on mobile horizontal scroll, 4x2 grid on desktop) -->
+      <div class="grid grid-rows-2 grid-flow-col overflow-x-auto gap-6 pb-6 md:pb-0 snap-x snap-mandatory scrollbar-hide auto-cols-[85%] sm:auto-cols-[45%] md:auto-cols-auto md:grid-cols-3 lg:grid-cols-4 md:grid-rows-none md:grid-flow-row reveal">
+        
+        <!-- Card 1: Dental Implants -->
+        <div class="snap-start bg-white p-6 rounded-2xl shadow-subtle border-l-4 border-dentalGreen flex flex-col h-full transform hover:-translate-y-1 hover:shadow-hoverPremium transition-all duration-300">
+          <div class="mb-4 text-dentalGreen">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 5C7.5 4.5 8.5 5 9 5C9.5 5 10.5 4.5 12 5C13.5 4.5 14.5 5 15 5C15.5 5 16.5 4.5 18 5C19 6 19.5 7.5 19.5 9C19.5 11 18.5 12.5 17.5 13.5C16.5 14.5 15.5 15 15 15H9C8.5 15 7.5 14.5 6.5 13.5C5.5 12.5 4.5 11 4.5 9C4.5 7.5 5 6 6 5Z" fill="url(#mintGrad)" />
+              <path d="M12 15V22M9 17H15M10 19H14M11 21H13" stroke-width="2" />
+            </svg>
+          </div>
+          <h3 class="font-sans font-bold text-darkBlue text-lg mb-2">Dental Implants</h3>
+          <p class="text-grayText text-sm leading-relaxed mb-4 flex-grow">Advanced, secure permanent replacements that look and feel like natural teeth.</p>
+          <a href="#booking" class="text-dentalGreen hover:text-dentalGreen-dark font-bold text-xs tracking-wider uppercase inline-flex items-center gap-1 group mt-auto select-none">
+            Learn More <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        <!-- Card 2: Braces & Aligners -->
+        <div class="snap-start bg-white p-6 rounded-2xl shadow-subtle border-l-4 border-dentalGreen flex flex-col h-full transform hover:-translate-y-1 hover:shadow-hoverPremium transition-all duration-300">
+          <div class="mb-4 text-dentalGreen">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 8C4 7.5 4.5 8 5 8C5.5 8 6 7.5 7 8C7.5 9.5 7.5 11 7.5 12C7.5 13 7 14 6.5 14.5H3.5C3 14 2.5 13 2.5 12C2.5 11 2.5 9.5 3 8Z" fill="url(#mintGrad)" />
+              <path d="M9.5 8C10.5 7.5 11 8 11.5 8C12 8 12.5 7.5 13.5 8C14 9.5 14 11 14 12C14 13 13.5 14 13 14.5H10C9.5 14 9 13 9 12C9 11 9 9.5 9.5 8Z" fill="url(#mintGrad)" />
+              <path d="M16 8C17 7.5 17.5 8 18 8C18.5 8 19 7.5 20 8C20.5 9.5 20.5 11 20.5 12C20.5 13 20 14 19.5 14.5H16.5C16 14 15.5 13 15.5 12C15.5 11 15.5 9.5 16 8Z" fill="url(#mintGrad)" />
+              <path d="M2 11H22" stroke="#F4C430" stroke-width="2" />
+              <rect x="4" y="10" width="2" height="2" fill="#0B6E4F" stroke="none" />
+              <rect x="10.5" y="10" width="2" height="2" fill="#0B6E4F" stroke="none" />
+              <rect x="17" y="10" width="2" height="2" fill="#0B6E4F" stroke="none" />
+            </svg>
+          </div>
+          <h3 class="font-sans font-bold text-darkBlue text-lg mb-2">Braces & Aligners</h3>
+          <p class="text-grayText text-sm leading-relaxed mb-4 flex-grow">Straighten your teeth comfortably with high-end clear invisible aligners or traditional braces.</p>
+          <a href="#booking" class="text-dentalGreen hover:text-dentalGreen-dark font-bold text-xs tracking-wider uppercase inline-flex items-center gap-1 group mt-auto select-none">
+            Learn More <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        <!-- Card 3: Crowns & Bridges -->
+        <div class="snap-start bg-white p-6 rounded-2xl shadow-subtle border-l-4 border-dentalGreen flex flex-col h-full transform hover:-translate-y-1 hover:shadow-hoverPremium transition-all duration-300">
+          <div class="mb-4 text-dentalGreen">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 10C6 14 7 18 9 20C9.5 20.5 10 20 10.5 19C11 18 11 17 12 17C13 17 13 18 13.5 19C14 20 14.5 20.5 15 20C17 18 18 14 18 10V9H6V10Z" fill="url(#mintGrad)" />
+              <path d="M5 8L8 4L12 7L16 4L19 8H5Z" fill="#F4C430" stroke="#F4C430" stroke-width="1" />
+            </svg>
+          </div>
+          <h3 class="font-sans font-bold text-darkBlue text-lg mb-2">Crowns & Bridges</h3>
+          <p class="text-grayText text-sm leading-relaxed mb-4 flex-grow">Restore broken or decayed teeth with custom-crafted, durable porcelain crowns.</p>
+          <a href="#booking" class="text-dentalGreen hover:text-dentalGreen-dark font-bold text-xs tracking-wider uppercase inline-flex items-center gap-1 group mt-auto select-none">
+            Learn More <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        <!-- Card 4: Kids Dentistry -->
+        <div class="snap-start bg-white p-6 rounded-2xl shadow-subtle border-l-4 border-dentalGreen flex flex-col h-full transform hover:-translate-y-1 hover:shadow-hoverPremium transition-all duration-300">
+          <div class="mb-4 text-dentalGreen">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 6C7.5 5.5 8.5 6 9 6C9.5 6 10.5 5.5 12 6C13.5 5.5 14.5 6 15 6C15.5 6 16.5 5.5 18 6C19 7 19.5 8.5 19.5 10C19.5 13 18.5 15 17 17C16.5 17.5 16 17 15.5 16C15 15 15 14 14 14C13 14 13 15 12.5 16C12 17 11.5 17.5 11 17C9.5 15 8.5 13 8.5 10C8.5 8.5 9 7 10 6" fill="url(#mintGrad)" />
+              <circle cx="10" cy="9.5" r="1" fill="#0B6E4F" />
+              <circle cx="14" cy="9.5" r="1" fill="#0B6E4F" />
+              <path d="M10.5 12C11 12.8 13 12.8 13.5 12" stroke="#0B6E4F" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3 class="font-sans font-bold text-darkBlue text-lg mb-2">Kids Dentistry</h3>
+          <p class="text-grayText text-sm leading-relaxed mb-4 flex-grow">Gentle, playful, and customized dental care that keeps our youngest patients smiling.</p>
+          <a href="#booking" class="text-dentalGreen hover:text-dentalGreen-dark font-bold text-xs tracking-wider uppercase inline-flex items-center gap-1 group mt-auto select-none">
+            Learn More <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        <!-- Card 5: Teeth Whitening -->
+        <div class="snap-start bg-white p-6 rounded-2xl shadow-subtle border-l-4 border-dentalGreen flex flex-col h-full transform hover:-translate-y-1 hover:shadow-hoverPremium transition-all duration-300">
+          <div class="mb-4 text-dentalGreen">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 7C7.5 6.5 8.5 7 9 7C9.5 7 10.5 6.5 12 7C13.5 6.5 14.5 7 15 7C15.5 7 16.5 6.5 18 7C19 8 19.5 9.5 19.5 11C19.5 14 18.5 16 17 18C16.5 18.5 16 18 15.5 17C15 16 15 15 14 15C13 15 13 16 12.5 17C12 18 11.5 18.5 11 18C9.5 16 8.5 14 8.5 11C8.5 9.5 9 8 10 7" fill="url(#mintGrad)" />
+              <path d="M19 4L21 6M21 4L19 6M18 5H22M20 3V7" stroke="#F4C430" stroke-width="1.5" />
+              <path d="M3 15L5 17M5 15L3 17M2 16H6M4 14V18" stroke="#F4C430" stroke-width="1.5" />
+            </svg>
+          </div>
+          <h3 class="font-sans font-bold text-darkBlue text-lg mb-2">Teeth Whitening</h3>
+          <p class="text-grayText text-sm leading-relaxed mb-4 flex-grow">Safe and highly effective clinic whitening treatments to instantly brighten your teeth.</p>
+          <a href="#booking" class="text-dentalGreen hover:text-dentalGreen-dark font-bold text-xs tracking-wider uppercase inline-flex items-center gap-1 group mt-auto select-none">
+            Learn More <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        <!-- Card 6: Root Canal Treatment -->
+        <div class="snap-start bg-white p-6 rounded-2xl shadow-subtle border-l-4 border-dentalGreen flex flex-col h-full transform hover:-translate-y-1 hover:shadow-hoverPremium transition-all duration-300">
+          <div class="mb-4 text-dentalGreen">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 6C7.5 5.5 8.5 6 9 6C9.5 6 10.5 5.5 12 6C13.5 5.5 14.5 6 15 6C15.5 6 16.5 5.5 18 6C19 7 19.5 8.5 19.5 10C19.5 13 18.5 15 17 17C16.5 17.5 16 17 15.5 16C15 15 15 14 14 14C13 14 13 15 12.5 16C12 17 11.5 17.5 11 17C9.5 15 8.5 13 8.5 10C8.5 8.5 9 7 10 6" fill="url(#mintGrad)" />
+              <path d="M12 9C12 11 11 13 10.5 15M12 9C12 11 13 13 13.5 15" stroke="#FF5A5F" stroke-width="1.5" />
+              <path d="M12 4V9" stroke="#0B6E4F" stroke-width="2" />
+            </svg>
+          </div>
+          <h3 class="font-sans font-bold text-darkBlue text-lg mb-2">Root Canal Treatment</h3>
+          <p class="text-grayText text-sm leading-relaxed mb-4 flex-grow">Advanced, comfortable RCT techniques designed to save decaying teeth and eliminate pain.</p>
+          <a href="#booking" class="text-dentalGreen hover:text-dentalGreen-dark font-bold text-xs tracking-wider uppercase inline-flex items-center gap-1 group mt-auto select-none">
+            Learn More <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        <!-- Card 7: Cosmetic Dentistry -->
+        <div class="snap-start bg-white p-6 rounded-2xl shadow-subtle border-l-4 border-dentalGreen flex flex-col h-full transform hover:-translate-y-1 hover:shadow-hoverPremium transition-all duration-300">
+          <div class="mb-4 text-dentalGreen">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 6C7.5 5.5 8.5 6 9 6C9.5 6 10.5 5.5 12 6C13.5 5.5 14.5 6 15 6C15.5 6 16.5 5.5 18 6C19 7 19.5 8.5 19.5 10C19.5 13 18.5 15 17 17C16.5 17.5 16 17 15.5 16C15 15 15 14 14 14C13 14 13 15 12.5 16C12 17 11.5 17.5 11 17C9.5 15 8.5 13 8.5 10C8.5 8.5 9 7 10 6" fill="url(#mintGrad)" />
+              <path d="M12 10C12 10 12.5 10.5 12.5 11C12.5 10.5 13 10 13 10C13 10 12.5 9.5 12.5 9C12.5 9.5 12 10 12 10Z" fill="#F4C430" stroke="#F4C430" stroke-width="1" />
+              <path d="M17 12C17 12 17.5 12.5 17.5 13C17.5 12.5 18 12 18 12C18 12 17.5 11.5 17.5 11C17.5 11.5 17 12 17 12Z" fill="#F4C430" stroke="#F4C430" stroke-width="1" />
+            </svg>
+          </div>
+          <h3 class="font-sans font-bold text-darkBlue text-lg mb-2">Cosmetic Dentistry</h3>
+          <p class="text-grayText text-sm leading-relaxed mb-4 flex-grow">Veneers, gum contouring, and smile makeovers designed to elevate confidence levels.</p>
+          <a href="#booking" class="text-dentalGreen hover:text-dentalGreen-dark font-bold text-xs tracking-wider uppercase inline-flex items-center gap-1 group mt-auto select-none">
+            Learn More <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        <!-- Card 8: Dental Imaging -->
+        <div class="snap-start bg-white p-6 rounded-2xl shadow-subtle border-l-4 border-dentalGreen flex flex-col h-full transform hover:-translate-y-1 hover:shadow-hoverPremium transition-all duration-300">
+          <div class="mb-4 text-dentalGreen">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" fill="#1A1A2E" stroke="#0B6E4F" stroke-width="2" />
+              <path d="M8 8C9 7.5 10 8 10.5 8C11 8 12 7.5 13 8C13.5 9 14 10.5 14 12C14 13.5 13.5 15 13 15.5H10C9.5 15.5 9 13.5 9 12C9 10.5 8 9 8 8Z" fill="#FFFFFF" fill-opacity="0.3" stroke="#E8F5F0" stroke-width="1.5" />
+              <line x1="3" y1="12" x2="21" y2="12" stroke="#0B6E4F" stroke-dasharray="2 3" opacity="0.5" />
+              <line x1="12" y1="3" x2="12" y2="21" stroke="#0B6E4F" stroke-dasharray="2 3" opacity="0.5" />
+            </svg>
+          </div>
+          <h3 class="font-sans font-bold text-darkBlue text-lg mb-2">Dental Imaging</h3>
+          <p class="text-grayText text-sm leading-relaxed mb-4 flex-grow">Ultra-low radiation digital X-rays and imaging solutions for highly accurate diagnoses.</p>
+          <a href="#booking" class="text-dentalGreen hover:text-dentalGreen-dark font-bold text-xs tracking-wider uppercase inline-flex items-center gap-1 group mt-auto select-none">
+            Learn More <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 4: Why Choose Us ================= -->
+  <section id="about" class="py-20 bg-white scroll-mt-12">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      
+      <!-- Left Column (Text & Features) -->
+      <div class="flex flex-col items-start text-left reveal">
+        <span class="text-dentalGreen font-bold uppercase tracking-widest text-[10px] md:text-xs select-none">
+          Why Green Park Dental
+        </span>
+        <h2 class="font-serif text-3xl md:text-[36px] font-bold text-darkBlue mt-2 mb-6 tracking-tight">
+          Care That Goes Beyond the Chair
+        </h2>
+        <p class="font-sans text-base text-grayText leading-[1.7] mb-8">
+          Led by <strong class="text-darkBlue font-semibold">Dr. S.P. Aggarwal</strong> with over 35 years of clinical expertise, our team of specialists combines world-class dental solutions with genuine patient care and warmth. We believe that every patient deserves custom, premium treatment packages—from the initial consult down to the final beautiful results.
+        </p>
+        
+        <!-- Divider -->
+        <div class="w-10 h-[3px] bg-dentalGreen mb-8 rounded-full"></div>
+        
+        <!-- Features Rows -->
+        <div class="space-y-6 w-full">
+          <!-- Feature 1 -->
+          <div class="flex gap-4 items-start">
+            <div class="w-8 h-8 rounded-full bg-dentalGreen flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
+              <svg class="w-4 h-4 text-white" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 10 8 14 16 6" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-sans font-bold text-darkBlue text-lg">Advanced Technology</h4>
+              <p class="text-grayText text-sm leading-relaxed mt-1">State-of-the-art diagnostic and clinical equipment for precise, highly comfortable treatment sessions.</p>
+            </div>
+          </div>
+          
+          <!-- Feature 2 -->
+          <div class="flex gap-4 items-start">
+            <div class="w-8 h-8 rounded-full bg-dentalGreen flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
+              <svg class="w-4 h-4 text-white" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 10 8 14 16 6" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-sans font-bold text-darkBlue text-lg">Experienced Specialists</h4>
+              <p class="text-grayText text-sm leading-relaxed mt-1">15+ MDS and DDS expert dentists, each highly accomplished in their respective fields of practice.</p>
+            </div>
+          </div>
+          
+          <!-- Feature 3 -->
+          <div class="flex gap-4 items-start">
+            <div class="w-8 h-8 rounded-full bg-dentalGreen flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
+              <svg class="w-4 h-4 text-white" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 10 8 14 16 6" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-sans font-bold text-darkBlue text-lg">Patient-First Approach</h4>
+              <p class="text-grayText text-sm leading-relaxed mt-1">Extremely gentle clinical care and complete transparency with no hidden treatment or laboratory costs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column (Stats Box) -->
+      <div id="stats-block" class="relative reveal" style="transition-delay: 150ms;">
+        <div class="bg-dentalGreen-light rounded-[2.5rem] p-6 md:p-8 flex flex-col justify-between h-full border border-dentalGreen/5 shadow-subtle">
+          
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <!-- Stat Card 1 -->
+            <div class="bg-white p-6 rounded-2xl shadow-subtle text-center transform hover:scale-[1.03] transition-all duration-300 border border-gray-50">
+              <div class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-dentalGreen mb-2">
+                <span class="stat-number" data-target="45">0</span>+
+              </div>
+              <div class="text-[10px] md:text-xs text-grayText font-bold uppercase tracking-wider">Years</div>
+            </div>
+            
+            <!-- Stat Card 2 -->
+            <div class="bg-white p-6 rounded-2xl shadow-subtle text-center transform hover:scale-[1.03] transition-all duration-300 border border-gray-50">
+              <div class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-dentalGreen mb-2">
+                <span class="stat-number" data-target="10000">0</span>+
+              </div>
+              <div class="text-[10px] md:text-xs text-grayText font-bold uppercase tracking-wider">Smiles</div>
+            </div>
+            
+            <!-- Stat Card 3 -->
+            <div class="bg-white p-6 rounded-2xl shadow-subtle text-center transform hover:scale-[1.03] transition-all duration-300 border border-gray-50">
+              <div class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-dentalGreen mb-2">
+                <span class="stat-number" data-target="15">0</span>+
+              </div>
+              <div class="text-[10px] md:text-xs text-grayText font-bold uppercase tracking-wider">Specialists</div>
+            </div>
+            
+            <!-- Stat Card 4 -->
+            <div class="bg-white p-6 rounded-2xl shadow-subtle text-center transform hover:scale-[1.03] transition-all duration-300 border border-gray-50">
+              <div class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-dentalGreen mb-2">
+                <span class="stat-number" data-target="4.9" data-decimals="1">0.0</span>★
+              </div>
+              <div class="text-[10px] md:text-xs text-grayText font-bold uppercase tracking-wider">Rating</div>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <a href="#team" class="inline-block bg-goldAccent hover:bg-goldAccent-hover text-darkBlue font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-goldGlow select-none">
+              Meet Our Team
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION 4B: Meet Our Specialists ================= -->
+  <section id="team" class="py-20 bg-white border-t border-gray-100 scroll-mt-12">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+      
+      <!-- Heading -->
+      <div class="text-center mb-16 reveal">
+        <span class="text-dentalGreen font-bold uppercase tracking-widest text-[10px] md:text-xs select-none">
+          Our Team
+        </span>
+        <h2 class="font-serif text-3xl md:text-[36px] font-bold text-darkBlue mt-2 tracking-tight">
+          Meet Our Dental Specialists
+        </h2>
+        <p class="text-grayText text-base mt-4 max-w-[600px] mx-auto">
+          South Delhi's most accomplished clinicians combining clinical expertise with advanced technologies to deliver world-class dental experiences.
+        </p>
+      </div>
+
+      <!-- Doctor Profiles Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        
+        <!-- Doctor 1 Profile: Dr. Arjun Sharma -->
+        <div class="bg-white rounded-3xl overflow-hidden shadow-subtle border border-gray-100 flex flex-col md:flex-row transform hover:-translate-y-1 hover:shadow-premium transition-all duration-300 reveal">
+          <!-- Photo Column -->
+          <div class="md:w-1/2 h-[320px] relative overflow-hidden bg-dentalGreen-light">
+            <img src="images/dr-arjun-sharma.jpg" alt="Dr. Arjun Sharma - Chief Dental Surgeon" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+            <!-- Badge overlay -->
+            <span class="absolute bottom-4 left-4 bg-dentalGreen text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+              Oral Surgeon
+            </span>
+          </div>
+          <!-- Info Column -->
+          <div class="p-6 md:w-1/2 flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-darkBlue">Dr. Arjun Sharma</h3>
+              <p class="text-xs text-goldAccent font-bold uppercase tracking-wider mt-1">MDS | Dental Implants & Maxillofacial Surgery</p>
+              
+              <!-- Divider -->
+              <div class="w-8 h-[2px] bg-dentalGreen/30 my-4 rounded-full"></div>
+              
+              <p class="text-grayText text-sm leading-relaxed">
+                Expert clinician specializing in complicated dental implants, full-mouth reconstructions, and cosmetic jaw alignment surgery with over 15 years of surgical practice.
+              </p>
+            </div>
+            
+            <div class="mt-6 flex items-center justify-between border-t border-gray-50 pt-4">
+              <span class="text-xs text-grayText font-semibold">1,200+ Successful Implants</span>
+              <!-- Gold Star badge -->
+              <div class="flex text-goldAccent text-xs items-center gap-1 font-bold">
+                <span>★ 4.9</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 2 Profile: Dr. Rohan Mehta -->
+        <div class="bg-white rounded-3xl overflow-hidden shadow-subtle border border-gray-100 flex flex-col md:flex-row transform hover:-translate-y-1 hover:shadow-premium transition-all duration-300 reveal" style="transition-delay: 100ms;">
+          <!-- Photo Column -->
+          <div class="md:w-1/2 h-[320px] relative overflow-hidden bg-dentalGreen-light">
+            <img src="images/clinic-treatment.jpg" alt="Dr. Rohan Mehta treating patient" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            <!-- Badge overlay -->
+            <span class="absolute bottom-4 left-4 bg-dentalGreen text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+              Endodontist & Esthetics
+            </span>
+          </div>
+          <!-- Info Column -->
+          <div class="p-6 md:w-1/2 flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-darkBlue">Dr. Rohan Mehta</h3>
+              <p class="text-xs text-goldAccent font-bold uppercase tracking-wider mt-1">MDS | Conservative Dentistry & Smile Design</p>
+              
+              <!-- Divider -->
+              <div class="w-8 h-[2px] bg-dentalGreen/30 my-4 rounded-full"></div>
+              
+              <p class="text-grayText text-sm leading-relaxed">
+                A pioneer in microscopic endodontics, pain-free root canals, and ultra-thin porcelain cosmetic veneers to craft perfect smile designs.
+              </p>
+            </div>
+            
+            <div class="mt-6 flex items-center justify-between border-t border-gray-50 pt-4">
+              <span class="text-xs text-grayText font-semibold">Painless Clinical Precision</span>
+              <!-- Gold Star badge -->
+              <div class="flex text-goldAccent text-xs items-center gap-1 font-bold">
+                <span>★ 5.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION 5: Testimonials ================= -->
+  <section id="testimonials" class="py-20 bg-dentalGreen-light scroll-mt-12 overflow-hidden">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+      
+      <!-- Heading -->
+      <div class="text-center mb-16 reveal">
+        <span class="text-dentalGreen font-bold uppercase tracking-widest text-[10px] md:text-xs select-none">
+          Testimonials
+        </span>
+        <h2 class="font-serif text-3xl md:text-[36px] font-bold text-darkBlue mt-2 tracking-tight">
+          What Our Patients Say
+        </h2>
+      </div>
+
+      <!-- Testimonial Cards Slider/Row -->
+      <div class="flex overflow-x-auto gap-6 pb-6 md:pb-0 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-x-visible reveal">
+        
+        <!-- Card 1 -->
+        <div class="snap-start bg-white p-8 rounded-2xl shadow-subtle flex flex-col justify-between h-full min-w-[280px] md:min-w-0 border border-gray-100 flex-1 transform hover:-translate-y-1 transition-all duration-300">
+          <div>
+            <!-- Star Row -->
+            <div class="flex text-goldAccent mb-6">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            
+            <!-- Quote -->
+            <p class="font-sans italic text-grayText leading-[1.8] text-sm md:text-base mb-6">
+              "I had been avoiding the dentist for years out of fear, but the team at Green Park Dental made me feel completely at ease. Best dental experience of my life."
+            </p>
+          </div>
+
+          <!-- Patient Name & verified label -->
+          <div class="mt-auto flex items-center justify-between border-t border-gray-100 pt-4">
+            <div>
+              <h4 class="font-sans font-bold text-darkBlue text-sm md:text-base">Priya S.</h4>
+              <span class="text-xs text-grayText">New Delhi</span>
+            </div>
+            <span class="inline-flex items-center gap-1 bg-dentalGreen-light text-dentalGreen px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide select-none">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              Verified
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="snap-start bg-white p-8 rounded-2xl shadow-subtle flex flex-col justify-between h-full min-w-[280px] md:min-w-0 border border-gray-100 flex-1 transform hover:-translate-y-1 transition-all duration-300">
+          <div>
+            <!-- Star Row -->
+            <div class="flex text-goldAccent mb-6">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            
+            <!-- Quote -->
+            <p class="font-sans italic text-grayText leading-[1.8] text-sm md:text-base mb-6">
+              "Dr. Aggarwal is simply the best. My entire family has been coming here for over a decade and we wouldn't go anywhere else."
+            </p>
+          </div>
+
+          <!-- Patient Name & verified label -->
+          <div class="mt-auto flex items-center justify-between border-t border-gray-100 pt-4">
+            <div>
+              <h4 class="font-sans font-bold text-darkBlue text-sm md:text-base">Rahul M.</h4>
+              <span class="text-xs text-grayText">South Delhi</span>
+            </div>
+            <span class="inline-flex items-center gap-1 bg-dentalGreen-light text-dentalGreen px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide select-none">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              Verified
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="snap-start bg-white p-8 rounded-2xl shadow-subtle flex flex-col justify-between h-full min-w-[280px] md:min-w-0 border border-gray-100 flex-1 transform hover:-translate-y-1 transition-all duration-300">
+          <div>
+            <!-- Star Row -->
+            <div class="flex text-goldAccent mb-6">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            
+            <!-- Quote -->
+            <p class="font-sans italic text-grayText leading-[1.8] text-sm md:text-base mb-6">
+              "Flew in from Bangalore specifically for my implants. Worth every rupee and every kilometer. Exceptional quality of care."
+            </p>
+          </div>
+
+          <!-- Patient Name & verified label -->
+          <div class="mt-auto flex items-center justify-between border-t border-gray-100 pt-4">
+            <div>
+              <h4 class="font-sans font-bold text-darkBlue text-sm md:text-base">Anita K.</h4>
+              <span class="text-xs text-grayText">Bangalore</span>
+            </div>
+            <span class="inline-flex items-center gap-1 bg-dentalGreen-light text-dentalGreen px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide select-none">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              Verified
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Google Reviews Badge White Card -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 mt-12 p-6 bg-white rounded-2xl border border-gray-100 shadow-subtle max-w-3xl mx-auto reveal" style="transition-delay: 100ms;">
+        <div class="flex items-center gap-4">
+          <!-- Google G Logo SVG -->
+          <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center flex-shrink-0 border border-gray-100">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-sans font-bold text-darkBlue text-sm md:text-base flex items-center gap-2">
+              <span>4.9 out of 5</span>
+              <div class="flex text-goldAccent">
+                <!-- 5 Gold Stars -->
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </div>
+            </div>
+            <div class="text-xs md:text-sm text-grayText font-medium mt-0.5">Based on 200+ Verified Google Reviews</div>
+          </div>
+        </div>
+        <a href="https://search.google.com/local/reviews?placeid=ChIJzaHo3nHuDDkR0O3Cj0tq52E" target="_blank" rel="noopener noreferrer" class="text-dentalGreen hover:text-dentalGreen-dark font-bold flex items-center gap-1.5 group transition-colors text-sm select-none">
+          Read All Reviews <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION 6: Appointment Booking Banner ================= -->
+  <section id="booking" class="py-20 bg-dentalGreen text-white scroll-mt-12 overflow-hidden relative">
+    <!-- Subtle backing green/white highlights -->
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full -ml-40 -mb-40 blur-2xl pointer-events-none"></div>
+    
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Left Column (Heading & Timings) -->
+      <div class="lg:col-span-6 flex flex-col items-start text-left reveal">
+        <h2 class="font-serif text-3xl md:text-[38px] font-bold leading-tight mb-4 tracking-tight">
+          Ready for a Healthier Smile?
+        </h2>
+        <p class="font-sans text-base text-white/80 leading-[1.7] mb-8 max-w-[480px]">
+          Book your personalized clinic consultation today. Walk-ins are highly welcome during standard clinic operation hours.
+        </p>
+        
+        <!-- Timings pills -->
+        <div class="flex flex-wrap gap-3">
+          <div class="bg-white/10 backdrop-blur-sm border border-white/15 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+            Tue–Sat: 9am–1pm, 4pm–7pm
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm border border-white/15 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+            Sun–Mon: Closed
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column (Inline Mini Form Card) -->
+      <div class="lg:col-span-6 w-full max-w-[500px] lg:max-w-none mx-auto reveal" style="transition-delay: 150ms;">
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-premium text-darkBlue border border-gray-100">
+          
+          <form id="booking-form" class="space-y-4">
+            <!-- Name Input -->
+            <div>
+              <label for="booking-name" class="block text-xs font-bold text-darkBlue uppercase tracking-wider mb-2">Full Name</label>
+              <input type="text" id="booking-name" placeholder="John Doe" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-dentalGreen/30 focus:border-dentalGreen text-sm text-darkBlue font-medium transition-all" required>
+            </div>
+            
+            <!-- Phone Input -->
+            <div>
+              <label for="booking-phone" class="block text-xs font-bold text-darkBlue uppercase tracking-wider mb-2">Phone Number</label>
+              <input type="tel" id="booking-phone" placeholder="09870507777" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-dentalGreen/30 focus:border-dentalGreen text-sm text-darkBlue font-medium transition-all" required>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Service Dropdown -->
+              <div>
+                <label for="booking-service" class="block text-xs font-bold text-darkBlue uppercase tracking-wider mb-2">Service Needed</label>
+                <select id="booking-service" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-dentalGreen/30 focus:border-dentalGreen text-sm text-darkBlue font-medium transition-all appearance-none cursor-pointer" required>
+                  <option value="" disabled selected>Select Service</option>
+                  <option value="Dental Implants">Dental Implants</option>
+                  <option value="Braces & Aligners">Braces & Aligners</option>
+                  <option value="Crowns & Bridges">Crowns & Bridges</option>
+                  <option value="Kids Dentistry">Kids Dentistry</option>
+                  <option value="Teeth Whitening">Teeth Whitening</option>
+                  <option value="Root Canal Treatment">Root Canal Treatment</option>
+                  <option value="Cosmetic Dentistry">Cosmetic Dentistry</option>
+                  <option value="Dental Imaging">Dental Imaging</option>
+                </select>
+              </div>
+              
+              <!-- Date picker -->
+              <div>
+                <label for="booking-date" class="block text-xs font-bold text-darkBlue uppercase tracking-wider mb-2">Preferred Date</label>
+                <input type="date" id="booking-date" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-dentalGreen/30 focus:border-dentalGreen text-sm text-darkBlue font-medium transition-all" required>
+              </div>
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="w-full bg-goldAccent hover:bg-goldAccent-hover text-darkBlue font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-goldGlow mt-2 select-none">
+              Request Appointment
+            </button>
+          </form>
+          
+          <!-- Direct WhatsApp block -->
+          <div class="mt-6 pt-6 border-t border-gray-100 text-center">
+            <span class="block text-xs text-grayText font-medium mb-3">Or chat with us directly on WhatsApp</span>
+            
+            <a href="https://wa.me/919870507777" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold px-6 py-3 rounded-full text-sm shadow-md hover:shadow-[0_4px_14px_rgba(37,211,102,0.4)] transition-all duration-300 transform hover:scale-105 select-none">
+              <!-- WhatsApp Logo Image -->
+              <img src="images/whatsapp-logo.png" alt="WhatsApp logo" class="w-5 h-5 flex-shrink-0 object-contain">
+              Chat on WhatsApp
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION 7: Location & Contact ================= -->
+  <section id="contact" class="py-20 bg-white scroll-mt-12">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      
+      <!-- Left Column (Contact details) -->
+      <div class="flex flex-col items-start text-left reveal">
+        <span class="text-dentalGreen font-bold uppercase tracking-widest text-[10px] md:text-xs select-none">
+          Contact Us
+        </span>
+        <h2 class="font-serif text-3xl md:text-[36px] font-bold text-darkBlue mt-2 mb-8 tracking-tight">
+          Find Us
+        </h2>
+        
+        <!-- Contact block list -->
+        <div class="space-y-6 w-full mb-10">
+          
+          <!-- Address row -->
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-xl bg-dentalGreen-light text-dentalGreen flex items-center justify-center flex-shrink-0 mt-0.5 border border-dentalGreen/5 shadow-subtle">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-sans font-bold text-darkBlue text-base">Clinic Address</h4>
+              <p class="text-grayText text-sm leading-relaxed mt-1">H-4, Green Park Extension, New Delhi - 110016</p>
+            </div>
+          </div>
+          
+          <!-- Phone row -->
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-xl bg-dentalGreen-light text-dentalGreen flex items-center justify-center flex-shrink-0 mt-0.5 border border-dentalGreen/5 shadow-subtle">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-sans font-bold text-darkBlue text-base">Telephone</h4>
+              <p class="text-grayText text-sm leading-relaxed mt-1">011-41617777</p>
+            </div>
+          </div>
+          
+          <!-- Email row -->
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-xl bg-dentalGreen-light text-dentalGreen flex items-center justify-center flex-shrink-0 mt-0.5 border border-dentalGreen/5 shadow-subtle">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-sans font-bold text-darkBlue text-base">Email Address</h4>
+              <p class="text-grayText text-sm leading-relaxed mt-1">info@greenparkdental.com</p>
+            </div>
+          </div>
+          
+          <!-- Timings row -->
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-xl bg-dentalGreen-light text-dentalGreen flex items-center justify-center flex-shrink-0 mt-0.5 border border-dentalGreen/5 shadow-subtle">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-sans font-bold text-darkBlue text-base">Clinic Timings</h4>
+              <p class="text-grayText text-sm leading-relaxed mt-1">Tue–Sat: 9am–1pm, 4pm–7pm | Sun–Mon: Closed</p>
+            </div>
+          </div>
+
+        </div>
+        
+        <!-- Socials media & directions row -->
+        <div class="flex flex-wrap gap-6 items-center w-full">
+          <!-- Social row -->
+          <div class="flex items-center gap-3">
+            <!-- Facebook link -->
+            <a href="https://facebook.com/greenparkdental" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-dentalGreen hover:bg-dentalGreen-dark text-white flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-sm" aria-label="Facebook">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            <!-- Instagram link -->
+            <a href="https://instagram.com/greenparkdental" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-dentalGreen hover:bg-dentalGreen-dark text-white flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-sm" aria-label="Instagram">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+          </div>
+          
+          <!-- Directions Button -->
+          <a href="https://maps.google.com/?q=Green+Park+Dental+Clinic+H-4+Green+Park+Extension+New+Delhi" target="_blank" rel="noopener noreferrer" class="border-2 border-dentalGreen text-dentalGreen hover:bg-dentalGreen hover:text-white font-bold px-6 py-2.5 rounded-full text-sm transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-1.5 group select-none">
+            Get Directions <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Right Column (Google Map Iframe) -->
+      <div class="relative reveal" style="transition-delay: 150ms;">
+        <div class="rounded-2xl overflow-hidden shadow-premium border border-gray-100 h-[350px] map-container loading relative">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.3310900555393!2d77.20370531508097!3d28.55981898244654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce271dee8a1cd%3A0x61e76a4b8fc2edd0!2sGreen%20Park%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1634545994121!5m2!1sen!2sin" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy"
+            onload="this.parentElement.classList.remove('loading')">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION 8: Footer ================= -->
+  <footer class="bg-darkBlue text-white pt-16 pb-8 border-t-2 border-dentalGreen/20">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-12 border-b border-white/10">
+      
+      <!-- Col 1: Brand Column (4/12 width) -->
+      <div class="lg:col-span-4 flex flex-col items-start">
+        <a href="#hero" class="flex flex-col mb-4">
+          <span class="font-serif text-2xl font-bold text-white tracking-tight leading-tight">Green Park Dental</span>
+          <span class="text-[10px] uppercase font-bold text-goldAccent tracking-widest -mt-0.5 leading-none">Since 1977</span>
+        </a>
+        <p class="text-white/60 text-sm leading-relaxed mb-6 max-w-[280px]">
+          Smile Keepers of South Delhi. Providing family-friendly advanced clinical treatments with warmth and precision.
+        </p>
+        
+        <!-- Footer Socials Row -->
+        <div class="flex items-center gap-3">
+          <!-- Facebook -->
+          <a href="https://facebook.com/greenparkdental" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 hover:bg-goldAccent hover:text-darkBlue text-white flex items-center justify-center transition-all duration-300 transform hover:scale-110" aria-label="Facebook">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+          </a>
+          <!-- Instagram -->
+          <a href="https://instagram.com/greenparkdental" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 hover:bg-goldAccent hover:text-darkBlue text-white flex items-center justify-center transition-all duration-300 transform hover:scale-110" aria-label="Instagram">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+          <!-- Twitter -->
+          <a href="https://twitter.com/greenparkdental" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 hover:bg-goldAccent hover:text-darkBlue text-white flex items-center justify-center transition-all duration-300 transform hover:scale-110" aria-label="Twitter">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Services Column (3/12 width) -->
+      <div class="lg:col-span-3">
+        <h4 class="font-sans font-bold text-sm uppercase tracking-wider text-white mb-6">Services</h4>
+        <ul class="space-y-3 text-sm text-white/70">
+          <li class="hover:text-white transition-colors cursor-pointer">Dental Implants</li>
+          <li class="hover:text-white transition-colors cursor-pointer">Braces & Aligners</li>
+          <li class="hover:text-white transition-colors cursor-pointer">Crowns & Bridges</li>
+          <li class="hover:text-white transition-colors cursor-pointer">Kids Dentistry</li>
+          <li class="hover:text-white transition-colors cursor-pointer">Teeth Whitening</li>
+          <li class="hover:text-white transition-colors cursor-pointer">Root Canal Treatment</li>
+          <li class="hover:text-white transition-colors cursor-pointer">Cosmetic Dentistry</li>
+          <li class="hover:text-white transition-colors cursor-pointer">Dental Imaging</li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Quick Links Column (2/12 width) -->
+      <div class="lg:col-span-2">
+        <h4 class="font-sans font-bold text-sm uppercase tracking-wider text-white mb-6">Quick Links</h4>
+        <ul class="space-y-3 text-sm text-white/70">
+          <li><a href="#hero" class="hover:text-white transition-colors">Home</a></li>
+          <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+          <li><a href="#testimonials" class="hover:text-white transition-colors">Testimonials</a></li>
+          <li><a href="#booking" class="hover:text-white transition-colors">Book Online</a></li>
+          <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Contact Column (3/12 width) -->
+      <div class="lg:col-span-3 flex flex-col items-start">
+        <h4 class="font-sans font-bold text-sm uppercase tracking-wider text-white mb-6">Contact Clinic</h4>
+        <address class="not-italic text-sm text-white/70 space-y-3 mb-6">
+          <p class="leading-relaxed">H-4, Green Park Extension,<br>New Delhi - 110016</p>
+          <p>Ph: 011-41617777</p>
+          <p>Email: info@greenparkdental.com</p>
+          <p class="text-xs text-goldAccent font-semibold leading-normal">Tue–Sat: 9am–1pm, 4pm–7pm</p>
+        </address>
+        
+        <!-- WhatsApp footer button pill -->
+        <a href="https://wa.me/919870507777" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-md transition-all duration-300 transform hover:scale-105 select-none">
+          <!-- WhatsApp Logo Image -->
+          <img src="images/whatsapp-logo.png" alt="WhatsApp logo" class="w-4 h-4 flex-shrink-0 object-contain">
+          Chat on WhatsApp
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-white/50 gap-4 text-center md:text-left">
+      <p>© 2025 Green Park Dental Clinic. All Rights Reserved.</p>
+      <p class="font-medium">Redesigned into a World-Class Medical Experience</p>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp button with pulsing ring animation -->
+  <a href="https://wa.me/919870507777" target="_blank" rel="noopener noreferrer" 
+     class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-[0_0_22px_rgba(37,211,102,0.6)] transform hover:scale-110 transition-all duration-300 animate-bounce group" 
+     style="animation-duration: 2.2s;"
+     aria-label="Chat on WhatsApp">
+    <!-- Pulse Ring overlay -->
+    <span class="absolute inset-0 rounded-full bg-[#25D366]/40 animate-ping group-hover:animate-none" style="animation-duration: 1.5s;"></span>
+    <!-- Inside: Custom WhatsApp Logo Image -->
+    <img src="images/whatsapp-logo.png" alt="WhatsApp" class="w-8 h-8 relative z-10 object-contain">
+  </a>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    // ----------------------------------------------------
+    // Mobile Nav Hamburger Toggle
+    // ----------------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerTop = document.getElementById('hamburger-top');
+    const hamburgerMiddle = document.getElementById('hamburger-middle');
+    const hamburgerBottom = document.getElementById('hamburger-bottom');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMobileMenu() {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      
+      if (isHidden) {
+        // Open Mobile menu
+        mobileMenu.classList.remove('hidden');
+        hamburgerTop.classList.add('rotate-45', 'translate-x-1', 'translate-y-[2px]');
+        hamburgerMiddle.classList.add('opacity-0');
+        hamburgerBottom.classList.add('-rotate-45', 'translate-x-1', '-translate-y-[2px]');
+      } else {
+        // Close Mobile menu
+        mobileMenu.classList.add('hidden');
+        hamburgerTop.classList.remove('rotate-45', 'translate-x-1', 'translate-y-[2px]');
+        hamburgerMiddle.classList.remove('opacity-0');
+        hamburgerBottom.classList.remove('-rotate-45', 'translate-x-1', '-translate-y-[2px]');
+      }
+    }
+
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+    // Close menu when clicking a link
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        hamburgerTop.classList.remove('rotate-45', 'translate-x-1', 'translate-y-[2px]');
+        hamburgerMiddle.classList.remove('opacity-0');
+        hamburgerBottom.classList.remove('-rotate-45', 'translate-x-1', '-translate-y-[2px]');
+      });
+    });
+
+    // ----------------------------------------------------
+    // Sticky Nav Blur & Past-Hero Border Accent on Scroll
+    // ----------------------------------------------------
+    const navbar = document.getElementById('navbar');
+    const heroSection = document.getElementById('hero');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      
+      // Scrolled past 80px -> white backdrop & shadow
+      if (scrollTop > 80) {
+        navbar.classList.add('bg-white/85', 'backdrop-blur-md', 'shadow-md');
+        navbar.classList.remove('bg-white/40', 'backdrop-blur-none', 'shadow-none');
+      } else {
+        navbar.classList.remove('bg-white/85', 'backdrop-blur-md', 'shadow-md');
+        navbar.classList.add('bg-white/40', 'backdrop-blur-none', 'shadow-none');
+      }
+      
+      // Scrolled past Hero Section -> Green top border accent
+      if (heroSection) {
+        const heroHeight = heroSection.offsetHeight;
+        if (scrollTop >= heroHeight - 80) {
+          navbar.classList.add('border-dentalGreen');
+          navbar.classList.remove('border-transparent');
+        } else {
+          navbar.classList.remove('border-dentalGreen');
+          navbar.classList.add('border-transparent');
+        }
+      }
+    }, { passive: true });
+
+    // ----------------------------------------------------
+    // CSS Scroll Reveal Observer (IntersectionObserver)
+    // ----------------------------------------------------
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // Animate once
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.12
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // ----------------------------------------------------
+    // Stats Counter Animation (requestAnimationFrame)
+    // ----------------------------------------------------
+    let statsAnimated = false;
+
+    function animateCounters() {
+      if (statsAnimated) return;
+      statsAnimated = true;
+      
+      const counters = document.querySelectorAll('.stat-number');
+      counters.forEach(counter => {
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const decimals = parseInt(counter.getAttribute('data-decimals') || '0');
+        const duration = 1600; // 1.6s duration
+        let startTime = null;
+
+        function update(timestamp) {
+          if (!startTime) startTime = timestamp;
+          const progress = Math.min((timestamp - startTime) / duration, 1);
+          const current = progress * target;
+          
+          if (decimals > 0) {
+            counter.textContent = current.toFixed(decimals);
+          } else {
+            counter.textContent = Math.floor(current).toLocaleString();
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            if (decimals > 0) {
+              counter.textContent = target.toFixed(decimals);
+            } else {
+              counter.textContent = target.toLocaleString();
+            }
+          }
+        }
+        requestAnimationFrame(update);
+      });
+    }
+
+    const statsSection = document.getElementById('stats-block');
+    if (statsSection) {
+      const statsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounters();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      statsObserver.observe(statsSection);
+    }
+
+    // ----------------------------------------------------
+    // JS Toast Notification system & Form Handler
+    // ----------------------------------------------------
+    function showToast(message, subtitle, isError = false) {
+      const container = document.getElementById('toast-container');
+      
+      const toast = document.createElement('div');
+      toast.className = `toast border-l-4 ${isError ? 'border-red-500' : 'border-dentalGreen'}`;
+      
+      const iconClass = isError ? 'bg-red-50 text-red-500' : 'bg-dentalGreen-light text-dentalGreen';
+      const iconSvg = isError ? 
+        `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>` :
+        `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>`;
+
+      toast.innerHTML = `
+        <div class="w-8 h-8 rounded-full ${iconClass} flex items-center justify-center flex-shrink-0">
+          ${iconSvg}
+        </div>
+        <div class="flex-1">
+          <h4 class="font-sans font-bold text-darkBlue text-sm">${message}</h4>
+          <p class="text-xs text-grayText mt-0.5">${subtitle}</p>
+        </div>
+        <button class="text-gray-400 hover:text-gray-600 transition-colors focus:outline-none" onclick="dismissToast(this)">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      `;
+      
+      container.appendChild(toast);
+      
+      // Animate in
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 10);
+      
+      // Auto dismiss after 4 seconds
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.classList.remove('show');
+          setTimeout(() => {
+            if (toast.parentNode) toast.remove();
+          }, 400);
+        }
+      }, 4000);
+    }
+
+    function dismissToast(button) {
+      const toast = button.parentElement;
+      toast.classList.remove('show');
+      setTimeout(() => {
+        if (toast.parentNode) toast.remove();
+      }, 400);
+    }
+
+    // Dynamic date picker boundary limit (no scheduling in the past)
+    const dateInput = document.getElementById('booking-date');
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+    }
+
+    // Appointment form submit handler
+    const bookingForm = document.getElementById('booking-form');
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('booking-name').value.trim();
+      const phone = document.getElementById('booking-phone').value.trim();
+      const service = document.getElementById('booking-service').value;
+      const date = document.getElementById('booking-date').value;
+      
+      if (!name || !phone || !service || !date) {
+        showToast('Incomplete Form', 'Please fill out all request details.', true);
+        return;
+      }
+      
+      // Success triggers!
+      bookingForm.reset();
+      showToast('Appointment Requested!', "We'll call you back within 2 hours!");
+    });
+  </script>
+</body>
+</html>
